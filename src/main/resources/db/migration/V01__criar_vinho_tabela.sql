@@ -4,5 +4,5 @@ CREATE TABLE vinho(
 	tipo VARCHAR(15) NOT NULL,
 	safra INT NOT NULL,
 	volume INT NOT NULL,	
-	valor DECIMAL(10, 2) NOT NULL
+	preco DECIMAL(10, 2) NOT NULL
 ) /*ENGINE=InnoDB DEFAULT CHARSET=utf8;*/

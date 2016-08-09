@@ -54,6 +54,9 @@
 						<td th:text="${vinho.volume}">750 ml</td>
 						<td th:text="${vinho.preco}">R$ 37,00</td>
 					</tr>
+					<tr th:if="${vinhos.empty}">
+						<td colspan="6">Nenhum vinho cadastrado</td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
