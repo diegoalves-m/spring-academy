@@ -3,9 +3,13 @@ package com.algaworks.wine.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.algaworks.wine.model.TipoVinho;
+import com.algaworks.wine.model.Vinho;
 import com.algaworks.wine.repository.Vinhos;
+import com.algaworks.wine.service.CadastroVinhoService;
 
 @Controller
 @RequestMapping("/vinhos")
@@ -13,6 +17,9 @@ public class VinhosController {
 	
 	@Autowired
 	private Vinhos vinhos;
+	
+	@Autowired
+	private CadastroVinhoService cadastroVinhosService;
 
 	@RequestMapping
 	public ModelAndView pesquisa() {
@@ -22,7 +29,16 @@ public class VinhosController {
 	}
 	
 	@RequestMapping("/novo")
-	public String novo() {
-		return "/produto/CadastroProduto";
+	public ModelAndView novo(Vinho vinho) {
+		
+		ModelAndView mv = new ModelAndView("/vinho/CadastroVinho");
+		mv.addObject("tipos", TipoVinho.values());
+		return mv;
+	}
+	
+	@RequestMapping(value = "/novo", method = RequestMethod.POST )
+	public ModelAndView salvar(Vinho vinho) {
+		cadastroVinhosService.salvar(vinho);
+		return new ModelAndView("redirect:/vinhos/novo");
 	}
 }
