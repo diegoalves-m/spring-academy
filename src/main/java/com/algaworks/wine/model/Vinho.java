@@ -7,6 +7,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 public class Vinho {
@@ -28,33 +30,47 @@ public class Vinho {
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
+        
+        @NotBlank(message = "O nome é obrigatório")
 	public String getNome() {
 		return nome;
 	}
+        
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+        
+        @NotNull(message = "O tipo é obrigatório")
 	public TipoVinho getTipo() {
 		return tipo;
 	}
+        
 	public void setTipo(TipoVinho tipo) {
 		this.tipo = tipo;
 	}
+        
+        @NotNull(message = "A safra é obrigatória")
 	public Integer getSafra() {
 		return safra;
 	}
+        
 	public void setSafra(Integer safra) {
 		this.safra = safra;
 	}
+        
+        @NotNull(message = "O volume é obrigatório")
 	public Integer getVolume() {
 		return volume;
 	}
 	public void setVolume(Integer volume) {
 		this.volume = volume;
 	}
+        
+        @NotNull(message = "O valor é obrigatório")
 	public BigDecimal getPreco() {
 		return preco;
 	}
+        
 	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
 	}

@@ -8,13 +8,12 @@ import com.algaworks.wine.repository.Vinhos;
 
 @Service
 public class CadastroVinhoService {
-	
-	@Autowired
-	private Vinhos vinhos;
-	
-	public void salvar(Vinho vinho) {
-		vinhos.save(vinho);
-	}
-	
+
+    @Autowired
+    private Vinhos vinhos;
+
+    public void salvar(Vinho vinho) {
+        vinhos.save(vinho);
+    }
 
 }
