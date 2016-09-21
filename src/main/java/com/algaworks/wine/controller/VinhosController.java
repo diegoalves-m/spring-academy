@@ -12,6 +12,7 @@ import com.algaworks.wine.repository.Vinhos;
 import com.algaworks.wine.service.CadastroVinhoService;
 import javax.validation.Valid;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -48,4 +49,13 @@ public class VinhosController {
         attributes.addFlashAttribute("mensagem", "Vinho salvo com sucesso!");
         return new ModelAndView("redirect:/vinhos/novo");
     }
+    
+    @RequestMapping("/{codigo}")
+    public ModelAndView visualizar(@PathVariable Long codigo) {
+        ModelAndView mv = new ModelAndView("/vinho/VisualizacaoVinho");
+        Vinho vinho = vinhos.findOne(codigo);
+        mv.addObject("vinho", vinho);
+        return mv;
+    }
+    
 }

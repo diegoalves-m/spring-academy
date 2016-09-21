@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/LayoutPadrao">
+
+    <head>
+        <title th:text="${vinho.nome}"></title>
+    </head>
+
+    <body>
+        <section layout:fragment="conteudo">
+            <div class="page-header">
+                <div class="container-fluid">
+                    <h1 th:text="${vinho.nome}"></h1>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div>Foto</div>
+                    </div>
+                    <div class="col-sm-3">
+                        <ul class="list-group">
+                            <li class="list-group-item" th:text="|Vinho ${vinho.tipo.descricao}|"></li>
+                            <li class="list-group-item" th:text="|${vinho.volume} ml|"></li>
+                            <li class="list-group-item" th:text="|Ano ${vinho.safra}|"></li>
+                            <li class="list-group-item" th:text="|R$ ${vinho.preco}|"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
