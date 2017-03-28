@@ -22,6 +22,7 @@ public class Vinho {
     private Integer safra;
     private Integer volume;
     private BigDecimal preco;
+    private String foto;
 
     public Long getCodigo() {
         return codigo;
@@ -76,7 +77,15 @@ public class Vinho {
         this.preco = preco;
     }
 
-    @Override
+    public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	@Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;

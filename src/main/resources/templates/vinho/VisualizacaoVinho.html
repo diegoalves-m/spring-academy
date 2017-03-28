@@ -1,35 +1,54 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layout/LayoutPadrao">
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/LayoutPadrao">
 
-    <head>
-        <title th:text="${vinho.nome}"></title>
-    </head>
+<head>
+<title th:text="${vinho.nome}"></title>
+<link rel="stylesheet" type="text/css" th:href="@{/style/css/vendors/upload.min.css}"/>
+</head>
 
-    <body>
-        <section layout:fragment="conteudo">
-            <div class="page-header">
-                <div class="container-fluid">
-                    <h1 th:text="${vinho.nome}"></h1>
-                </div>
-            </div>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-9">
-                        <div>Foto</div>
-                    </div>
-                    <div class="col-sm-3">
-                        <ul class="list-group">
-                            <li class="list-group-item" th:text="|Vinho ${vinho.tipo.descricao}|"></li>
-                            <li class="list-group-item" th:text="|${vinho.volume} ml|"></li>
-                            <li class="list-group-item" th:text="|Ano ${vinho.safra}|"></li>
-                            <li class="list-group-item" th:text="|R$ ${vinho.preco}|"></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </body>
+<body>
+	<section layout:fragment="conteudo">
+		<div class="page-header">
+			<div class="container-fluid">
+				<h1 th:text="${vinho.nome}"></h1>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-9 js-container-foto">
+					<div id="upload-drop" class="wn-upload" th:attr="data-codigo=${vinho.codigo}"
+						th:if="${#strings.isEmpty(vinho.foto)}">
+						<div>
+							<span>Arraste a foto aqui ou</span>
+							<a class="wn-upload-form-file">selecione <input id="upload-select" type="file" accept=".jpg, .jpeg, .png"/></a>
+						</div>
+					</div>
+
+					<div id="progressbar" class="uk-progress uk-hidden">
+						<div class="uk-progress-bar" style="width: 0%;"></div>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<ul class="list-group">
+						<li class="list-group-item"
+							th:text="|Vinho ${vinho.tipo.descricao}|"></li>
+						<li class="list-group-item" th:text="|${vinho.volume} ml|"></li>
+						<li class="list-group-item" th:text="|Ano ${vinho.safra}|"></li>
+						<li class="list-group-item" th:text="|R$ ${vinho.preco}|"></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<th:block layout:fragment="javascript-extra">
+		<script th:src="@{/javascript/vendors/uikit.min.js}"></script>
+		<script th:src="@{/javascript/vendors/upload.min.js}"></script>
+		<script th:src="@{/javascript/vinho.upload-foto.js}"></script>
+	</th:block>
+	
+</body>
 </html>
